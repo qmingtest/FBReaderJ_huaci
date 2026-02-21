@@ -1,16 +1,22 @@
 apply plugin: 'com.android.library'
 
 android {
+	    compileSdk 34
+	    buildToolsVersion "34.0.0"
 
-	compileSdk 33
-	buildToolsVersion "30.0.3"
+	    defaultConfig {
+			        minSdkVersion 26
+			        targetSdkVersion 34
+		}
 
-	defaultConfig {
-		minSdkVersion 23
-		targetSdkVersion 33
-	}
-	namespace 'com.github.johnpersano.supertoasts'
-	lint {
-		abortOnError false
-	}
+	    namespace 'com.github.johnpersano.supertoasts'
+
+	    compileOptions {
+			        sourceCompatibility JavaVersion.VERSION_1_8
+			        targetCompatibility JavaVersion.VERSION_1_8
+		}
+
+	    lint {
+			        abortOnError false
+		}
 }
