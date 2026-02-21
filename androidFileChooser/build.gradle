@@ -1,19 +1,25 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdk 33
-    buildToolsVersion "30.0.3"
+        compileSdk 34
+        buildToolsVersion "34.0.0"
 
-    defaultConfig {
-        minSdkVersion 23
-        targetSdkVersion 33
-    }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        defaultConfig {
+                    minSdkVersion 26
+                    targetSdkVersion 34
         }
-    }
-    namespace 'group.pals.android.lib.ui.filechooser'
+
+        buildTypes {
+                    release {
+                                    minifyEnabled false
+                                    proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+                    }
+        }
+
+        namespace 'group.pals.android.lib.ui.filechooser'
+
+        compileOptions {
+                    sourceCompatibility JavaVersion.VERSION_1_8
+                    targetCompatibility JavaVersion.VERSION_1_8
+        }
 }
