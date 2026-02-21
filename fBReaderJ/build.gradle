@@ -1,70 +1,79 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdk 33
-    buildToolsVersion "30.0.3"
+        compileSdk 34
+        buildToolsVersion "34.0.0"
 
+        defaultConfig {
+                    applicationId "org.geometerplus.zlibrary.ui.android"
+                    minSdk 26
+                    targetSdk 34
 
-    defaultConfig {
-        applicationId "org.geometerplus.zlibrary.ui.android"
-        minSdk 26
-        //noinspection ExpiredTargetSdkVersion
-        targetSdkVersion 28
+                    ndk {
+                                    //设置支持的CPU架构
+                                    abiFilters "arm64-v8a", "armeabi-v7a", "x86", "x86_64"
+                    }
+                    versionCode 20250727
+                    versionName '2.6.0划词版'
+        }
 
-        ndk {
-            //设置支持的CPU架构
-//            abiFilters "arm64-v8a","armeabi-v7a", "x86", "x86_64"
+        buildTypes {
+                    release {
+                                    minifyEnabled false
+                                    proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+                    }
+                    debug {
+                                    minifyEnabled false
+                    }
         }
-        versionCode 20250727
-        versionName '2.6.0划词版'
-    }
-    splits {
-        abi {
-            enable true
-            reset()
-            include "arm64-v8a","armeabi-v7a", "x86", "x86_64"
-            universalApk false
-        }
-    }
-    buildTypes {
-        release {
-            applicationIdSuffix getVersionNameSuffix()
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-    externalNativeBuild {
-        ndkBuild {
-            path file('src/main/jni/Android.mk')
-        }
-    }
-    packagingOptions {
-        resources {
-            excludes += ['META-INF/DEPENDENCIES']
-        }
-    }
 
+        externalNativeBuild {
+                    ndkBuild {
+                                    path file('src/main/jni/Android.mk')
+                    }
+        }
 
-    useLibrary 'org.apache.http.legacy'
-    ndkVersion '23.0.7599858'
-    buildFeatures {
-        aidl true
-    }
-    namespace 'org.geometerplus.zlibrary.ui.android'
-    lint {
-        checkReleaseBuilds false
-    }
+        packagingOptions {
+                    resources {
+                                    excludes += ['META-INF/DEPENDENCIES']
+                    }
+        }
+
+        useLibrary 'org.apache.http.legacy'
+        ndkVersion '25.2.9519653'
+
+        buildFeatures {
+                    aidl true
+                    buildConfig true
+        }
+
+        namespace 'org.geometerplus.zlibrary.ui.android'
+
+        lint {
+                    checkReleaseBuilds false
+                    abortOnError false
+        }
+
+        compileOptions {
+                    sourceCompatibility JavaVersion.VERSION_1_8
+                    targetCompatibility JavaVersion.VERSION_1_8
+        }
+}
+
+repositories {
+        maven { url 'https://jitpack.io' }
+        mavenCentral()
+        google()
 }
 
 dependencies {
-    implementation project(':dragSortListView')
-    implementation project(':androidFileChooser')
-    implementation project(':superToasts')
-    implementation 'com.github.yukuku:ambilwarna:2.0.1'
-//    implementation 'com.android.support:support-v4:25.4.0'
-    implementation 'com.android.support:support-v4:28.0.0'
-    implementation 'org.apache.httpcomponents:httpmime:4.5.13'
-//    implementation 'org.apache.httpcomponents:httpclient:4.5.13'
-    implementation 'org.nanohttpd:nanohttpd:2.3.1'
-    implementation files('/Volumes/m/gits/FBReaderJ-plugin-local-opds-scanner/libs/jmdns.jar')
+        implementation project(':dragSortListView')
+        implementation project(':androidFileChooser')
+        implementation project(':superToasts')
+        implementation 'com.github.yukuku:ambilwarna:2.0.1'
+        implementation 'com.android.support:support-v4:28.0.0'
+        implementation 'org.apache.httpcomponents:httpmime:4.5.13'
+        implementation 'org.nanohttpd:nanohttpd:2.3.1'
+        // jmdns: place jmdns.jar in fBReaderJ/libs/ folder
+        implementation fileTree(dir: 'libs', include: ['*.jar'])
 }
