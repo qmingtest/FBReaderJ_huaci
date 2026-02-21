@@ -156,7 +156,7 @@ public final class FBReader extends FBReaderMainActivity implements ZLApplicatio
 
 		myBook = FBReaderIntents.getBookExtra(intent, myFBReaderApp.Collection);
 		final Bookmark bookmark = FBReaderIntents.getBookmarkExtra(intent);
-		if (myBook == null && intent.getAction().equals("android.intent.action.SEND")) {
+		if (myBook == null && "android.intent.action.SEND".equals(intent.getAction())) {
 			parseJumpIntent(intent);
 		}
 		if (myBook == null) {
@@ -413,7 +413,7 @@ public final class FBReader extends FBReaderMainActivity implements ZLApplicatio
 		final String action = intent.getAction();
 		final Uri data = intent.getData();
 
-		if (intent.getAction().equals("android.intent.action.SEND")) {
+		if ("android.intent.action.SEND".equals(intent.getAction())) {
 			parseJumpIntent(intent);
 			Config.Instance().runOnConnect(new Runnable() {
 				public void run() {
