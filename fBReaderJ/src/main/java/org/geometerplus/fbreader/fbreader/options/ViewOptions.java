@@ -53,9 +53,9 @@ public class ViewOptions {
 		TwoColumnView =
 			new ZLBooleanOption("Options", "TwoColumnView", x * x + y * y >= 42 * dpi * dpi);
 		LeftMargin =
-			new ZLIntegerRangeOption("Options", "LeftMargin", 0, 100, horMargin);
+						new ZLIntegerRangeOption("Options", "LeftMargin", 0, 600, horMargin);
 		RightMargin =
-			new ZLIntegerRangeOption("Options", "RightMargin", 0, 100, horMargin);
+						new ZLIntegerRangeOption("Options", "RightMargin", 0, 600, horMargin);
 		TopMargin =
 			new ZLIntegerRangeOption("Options", "TopMargin", 0, 100, 15);
 		BottomMargin =
